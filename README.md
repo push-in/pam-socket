@@ -1,24 +1,53 @@
-# pushinbr/pam-socket
+<!-- pam:product-page:start -->
+<div align="center">
+
+# PAM Socket
+
+**Rooms, broadcasts, acknowledgements, and scale-out over native WebSockets.**
+
+An event-oriented API over PAM's RFC 6455 transport with authentication, bounded events, rooms, resume behavior, and Redis Streams/NATS adapters.
+
+[![Release](https://img.shields.io/github/v/release/push-in/pam-socket?style=flat-square&label=stable)](https://github.com/push-in/pam-socket/releases)
+![PHP](https://img.shields.io/badge/PHP-8.5-777BB4?style=flat-square&logo=php&logoColor=white)
+![License](https://img.shields.io/github/license/push-in/pam-socket?style=flat-square)
+
+**[Documentation](https://push-in.github.io/pam-docs/packages/socket/) · [Why this exists](#why-this-exists) · [What you can build](#what-you-can-build) · [Quick start](#quick-start) · [Issues](https://github.com/push-in/pam-socket/issues)**
+
+</div>
+
+---
+
+## Why this exists
+
+An event-oriented API over PAM's RFC 6455 transport with authentication, bounded events, rooms, resume behavior, and Redis Streams/NATS adapters.
+
+| | |
+| --- | --- |
+| **Role** | Realtime framework |
+| **Execution path** | PAM WebSocket transport · PHP event API |
+| **This repository owns** | Application events, rooms, acknowledgements, and broadcast adapters |
+| **Boundary** | Not wire-compatible with Socket.IO or Engine.IO clients |
+
+## What you can build
+
+- Chat, presence, and collaboration
+- Realtime dashboards and notifications
+- Multi-worker broadcasts coordinated through Redis Streams or NATS
+
+## Quick start
+
+```bash
+pam composer require pushinbr/pam-socket
+```
+
+The **[PAM documentation](https://push-in.github.io/pam-docs/packages/socket/)** covers prerequisites, production setup, and the complete workflow. PAM projects keep normal manifests and lockfiles; product features stay in the package that owns them.
+<!-- pam:product-page:end -->
 
 Event-oriented socket APIs for Pam's native WebSocket transport, including
 authentication, rooms, broadcasts, acknowledgements and Redis Streams/NATS
 adapters.
 
-## Start here
-
-PAM Socket is a Composer package for the PAM Runtime; it is not a standalone
-WebSocket server. Install PAM first, open your application directory, and add
-the package through PAM's Composer toolchain:
-
-```bash
-curl --proto '=https' --proto-redir '=https' --tlsv1.2 \
-    --connect-timeout 15 --max-time 60 --max-filesize 1048576 -fsSL \
-    https://github.com/push-in/pam/releases/latest/download/install.sh | sh
-
-pam doctor
-cd my-app
-pam composer require pushinbr/pam-socket
-```
+## See it in action
 
 ```php
 use Pam\Socket\Server;
@@ -26,9 +55,6 @@ use Pam\Socket\Server;
 $io = Server::create();
 $io->on('connection', static fn ($socket) => $socket->emit('ready'));
 ```
-
-Pam uses standard RFC 6455 WebSockets; it is not wire-compatible with Engine.IO or
-Socket.IO clients.
 
 ## License
 
